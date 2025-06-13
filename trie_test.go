@@ -142,6 +142,15 @@ func BenchmarkInsert(b *testing.B) {
 	}
 }
 
+func BenchmarkInsertWithMeta(b *testing.B) {
+	t := New()
+	b.ReportAllocs()
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		t.InsertWithMeta("hello", 1)
+	}
+}
+
 // prevent compiler optimization
 var result []string
 
@@ -167,4 +176,18 @@ func BenchmarkSearchAll(b *testing.B) {
 		r = t.SearchAll("hello")
 	}
 	result = r
+}
+
+func BenchmarkSearchAllMeta(b *testing.B) {
+	t := New()
+	t.InsertWithMeta("hallo you", 1)
+	b.ReportAllocs()
+	b.ResetTimer()
+	var r []Match
+	for n := 0; n < b.N; n++ {
+		r = t.SearchAllMeta("hello")
+	}
+	if len(r) == 0 {
+		b.Fatal()
+	}
 }

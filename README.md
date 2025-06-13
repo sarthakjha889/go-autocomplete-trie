@@ -6,7 +6,7 @@
 
 <br />
 
-[![GoDoc](https://godoc.org/github.com/Vivino/go-autocomplete-trie?status.svg)](https://godoc.org/github.com/Vivino/go-autocomplete-trie) [![Build Status](https://travis-ci.com/Vivino/go-autocomplete-trie.svg?branch=master)](https://travis-ci.com/Vivino/go-autocomplete-trie)
+[![GoDoc](https://godoc.org/github.com/your-org/fuzzytrie?status.svg)](https://godoc.org/github.com/your-org/fuzzytrie) [![Build Status](https://travis-ci.com/Vivino/go-autocomplete-trie.svg?branch=master)](https://travis-ci.com/Vivino/go-autocomplete-trie)
 
 ## What Is it
 
@@ -58,4 +58,23 @@ t.SearchAll("urs")
 t.SearchAll("Thu")
 
 -> []string{"Thursday"}
+```
+
+### Using metadata
+
+The trie can store arbitrary metadata with each entry.
+
+```go
+type Product struct{ ID int; Price float64 }
+
+t := trie.NewG[Product]()
+t.Insert("iPhone", Product{1, 999})
+
+if p, ok := t.Find("iPhone"); ok {
+        fmt.Println(p.ID, p.Price)
+}
+
+for _, hit := range t.SearchAll("iphne") {
+        fmt.Printf("~ %s -> %+v\n", hit.Word, hit.Meta)
+}
 ```
