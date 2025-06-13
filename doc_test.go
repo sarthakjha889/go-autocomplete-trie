@@ -31,3 +31,13 @@ func Example_noFeatures() {
 	// []
 	// [Thursday Tuesday]
 }
+
+func Example_metadata() {
+	t := NewG[struct{ ID int }]()
+	t.Insert("iPhone", struct{ ID int }{1})
+	for _, hit := range t.SearchAll("iphone") {
+		fmt.Println(hit.Word, hit.Meta.ID)
+	}
+	// Output:
+	// iPhone 1
+}
