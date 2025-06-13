@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	trie "github.com/your-org/fuzzytrie"
+	trie "github.com/sarthakjha889/go-autocomplete-trie"
 )
 
 type Product struct {
