@@ -47,4 +47,24 @@ func TestMetadataFunctions(t *testing.T) {
 		assert.Equal(t, 1, len(res))
 		assert.Equal(t, 999.0, res[0].Meta.Price)
 	})
+
+	t.Run("Delete with metadata", func(t *testing.T) {
+		tr := New()
+		tr.InsertWithMeta("ipad", 1)
+		tr.Delete("ipad")
+		_, ok := tr.FindMeta("ipad")
+		assert.False(t, ok)
+		assert.Empty(t, tr.SearchAllMeta("ipad"))
+	})
+
+	t.Run("Fuzzy collisions", func(t *testing.T) {
+		tr := New()
+		tr.InsertWithMeta("iPhone", "A")
+		tr.InsertWithMeta("iPhobe", "B")
+		hits := tr.SearchAllMeta("iphoe")
+		assert.Equal(t, 2, len(hits))
+		m := map[string]interface{}{hits[0].Word: hits[0].Meta, hits[1].Word: hits[1].Meta}
+		assert.Equal(t, "A", m["iPhone"])
+		assert.Equal(t, "B", m["iPhobe"])
+	})
 }
