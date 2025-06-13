@@ -1,4 +1,4 @@
-module github.com/your-org/fuzzytrie
+module github.com/sarthakjha889/go-autocomplete-trie
 
 go 1.22
 

@@ -6,7 +6,7 @@
 
 <br />
 
-[![GoDoc](https://godoc.org/github.com/your-org/fuzzytrie?status.svg)](https://godoc.org/github.com/your-org/fuzzytrie) [![Build Status](https://travis-ci.com/Vivino/go-autocomplete-trie.svg?branch=master)](https://travis-ci.com/Vivino/go-autocomplete-trie)
+[![GoDoc](https://godoc.org/github.com/sarthakjha889/go-autocomplete-trie?status.svg)](https://godoc.org/github.com/sarthakjha889/go-autocomplete-trie) [![Build Status](https://travis-ci.com/Vivino/go-autocomplete-trie.svg?branch=master)](https://travis-ci.com/Vivino/go-autocomplete-trie)
 
 ## What Is it
 
